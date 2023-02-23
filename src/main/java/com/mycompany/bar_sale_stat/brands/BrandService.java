@@ -3,7 +3,6 @@ package com.mycompany.bar_sale_stat.brands;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.apache.commons.text.CaseUtils;
 import java.util.List;
 import java.util.Optional;
 
