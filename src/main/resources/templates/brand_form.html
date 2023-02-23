@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>brands</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script crossorigin="anonymous" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body style="background-image: url('https://post.healthline.com/wp-content/uploads/2020/04/wine-glass-1200x628-facebook-1200x628.jpg'); background-size: cover;">
+<div  th:replace="~{/header :: header}">Header</div>
+<div class="container-fluid  text-center d-flex align-items-center flex-column ">
+    <b><h1 class="mt-4" style="font-size:50px"; >Add new brand</h1></b>
+    <form th:action="@{/brand/save}" method="post" th:object="${brand}" style="max-width: 800px; min-width: 600px; margin: 3rem; text-align: left">
+        <div class="border p-3">
+
+            <div class="form-group">
+                <label class="col-form-label"> Brand Name</label>
+                <input type="text" class="form-control" th:field="*{brand_name}" required>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Alcohol Percentage</label>
+                <select th:field="*{percentages}" class="form-control" multiple="multiple" required>
+                    <th:block th:each="percentage:${listpercentage}">
+                        <option th:text="${percentage.PercentageVolume}" th:value="${percentage.Id}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Category Type</label>
+                <select th:field="*{category}" class="form-control" required>
+                    <th:block th:each="categories:${listCategories}">
+                        <option th:text="${categories.Category}" th:value="${categories.Id}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="d-flex ">
+                <button type="submit" class="btn btn-primary m-2">Submit</button>
+                <button type="button" class="btn btn-dark m-2">
+                    <a th:href="@{/}" style="text-decoration: none; color:white;">Cancel</a>
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div th:insert="~{/footer :: footer}">&copy; 2017 The Static Templates</div>
+</body>
+</html>

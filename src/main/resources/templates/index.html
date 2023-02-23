@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script crossorigin="anonymous" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body style="background-image: url('https://localliquor.com.au/wp-content/uploads/2021/07/tequila-6126907_1920.jpg');">
+
+<div  th:replace="~{/header :: header}">Header</div>
+<div class="container-fluid p-5 ">
+    <h1 style="color:white ; font-size:50px";>Brands</h1>
+    <div class="alert alert-success" role="alert" th:if="${message}">
+        [[${message}]]
+    </div>
+    <div class="w-50 p-3"></div>
+    <div class="w-50 p-3"></div>
+<table class="table table-bordered">
+    <thead>
+        <th scope="col" style="color:white ; font-size:25px";>ID</th>
+        <th scope="col" style="color:white ; font-size:25px";>Brand</th>
+        <th scope="col" style="color:white ; font-size:25px";>Percentage</th>
+        <th scope="col" style="color:white ; font-size:25px";>Category</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+    <th:block th:each="brand:${listBrands}">
+        <tr>
+            <td style="color:white ; font-size:20px";>[[${brand.id}]]</td>
+            <td style="color:white ; font-size:20px";>[[${#strings.capitalize(brand.brand_name)}]]</td>
+            <td style="color:white ; font-size:20px";>[[${brand.percentages}]]</td>
+            <td style="color:white ; font-size:20px";>[[${#strings.capitalize(brand.category.Category)}]]</td>
+            <td class="pl-4 pr-0">
+                 <a th:href="@{'/brand/edit/' + ${brand.id}}">
+                    <i class="bi bi-pencil-fill btn btn-outline-primary"></i>
+                </a>
+               <a th:href="@{'/brand/delete/' + ${brand.id}}">
+                   <i class="bi bi-trash-fill btn btn-outline-danger mr-3"></i>
+               </a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+    <button type="button" class="btn btn-primary ml-auto  mt-4 mb-5"><a th:href="@{/brand/new}"
+                                                                        style="text-decoration: none; color:white;"> Add new Brand</a></button>
+</div>
+
+<div th:insert="~{/footer :: footer}">&copy; 2017 The Static Templates</div>
+
+</body>
+</html>
