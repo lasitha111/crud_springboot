@@ -31,7 +31,7 @@
     <th:block th:each="brand:${listBrands}">
         <tr>
             <td style="color:white ; font-size:20px";>[[${brand.id}]]</td>
-            <td style="color:white ; font-size:20px";>[[${#strings.capitalize(brand.brand_name)}]]</td>
+            <td style="color:white ; font-size:20px";>[[${brand.brand_name}]]</td>
             <td style="color:white ; font-size:20px";>[[${brand.percentages}]]</td>
             <td style="color:white ; font-size:20px";>[[${#strings.capitalize(brand.category.Category)}]]</td>
             <td class="pl-4 pr-0">
